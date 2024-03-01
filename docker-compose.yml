@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  app:
+    image: nginx
+    volumes:
+      - "./nginx:/etc/nginx/conf.d"
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  auth:
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    restart: unless-stopped
+
+  service_1:
+    build:
+      context: ./service_1
+      dockerfile: Dockerfile
+    restart: unless-stopped
+
+  service_2:
+    build:
+      context: ./service_2
+      dockerfile: Dockerfile
+    restart: unless-stopped
